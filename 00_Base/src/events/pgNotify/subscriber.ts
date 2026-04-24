@@ -48,6 +48,7 @@ export class PgNotifyEventSubscriber implements IDtoEventSubscriber {
       user: config.database.username,
       password: config.database.password,
       database: config.database.database,
+      ...(config.database.ssl ? { ssl: { rejectUnauthorized: false } } : {}),
     });
   }
 

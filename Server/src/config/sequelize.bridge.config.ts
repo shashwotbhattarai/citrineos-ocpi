@@ -20,7 +20,8 @@ export default (async () => {
       console.log('[sequelize.bridge.config.ts] Using DOCKER configuration');
     }
 
-    const { host, port, database, username, password } = ocpiConfig.database;
+    const { host, port, database, username, password, ssl } =
+      ocpiConfig.database;
 
     console.log('[sequelize.bridge.config.ts] Loaded config for DB:', {
       host,
@@ -28,6 +29,7 @@ export default (async () => {
       database,
       username,
       password,
+      ssl,
     });
 
     return {
@@ -38,6 +40,9 @@ export default (async () => {
       port,
       dialect: 'postgres',
       logging: true,
+      ...(ssl
+        ? { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } } }
+        : {}),
     };
   } catch (error) {
     console.error(

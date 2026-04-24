@@ -93,6 +93,7 @@ export const ocpiConfigInputSchema = z.object({
     database: z.string().default('ocpi').optional(),
     username: z.string().default('ocpi').optional(),
     password: z.string().default('').optional(),
+    ssl: z.boolean().default(false).optional(),
   }),
 
   // Cache configuration (required for OCPI token caching)
@@ -251,6 +252,7 @@ export const ocpiConfigSchema = z.object({
     database: z.string(),
     username: z.string(),
     password: z.string(),
+    ssl: z.boolean().optional(),
   }),
 
   cache: z.object({

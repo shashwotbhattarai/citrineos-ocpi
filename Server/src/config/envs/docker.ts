@@ -49,6 +49,7 @@ export function createDockerOcpiConfig(): OcpiConfigInput {
       database: process.env.DB_NAME || 'citrine',
       username: process.env.DB_USER || 'citrine',
       password: process.env.DB_PASS || 'citrine',
+      ssl: process.env.DB_SSL === 'true',
     },
 
     cache: {
